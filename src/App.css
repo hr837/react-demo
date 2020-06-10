@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+
+/* use antd components style */
+@import "~antd/dist/antd.css";
