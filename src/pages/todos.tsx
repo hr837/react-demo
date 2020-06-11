@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import AddTodo from "../components/todos/add-todo";
 import TodoList from "../components/todos/todo-list";
-import { TodoInfo } from "../store/types/todo";
+import { TodoInfo } from "../store/todo/type";
 import { connect } from "react-redux";
-import { addTodo } from "../store/actions/todo.action";
+import { addTodo, toggleTodo } from "../store/todo/actions";
 import { bindActionCreators } from "redux";
+import { AppState } from "../store";
 
 const components = {
   Wrapper: styled.section`
@@ -18,6 +19,7 @@ const components = {
 type PropsType = {
   addClick: (text: string) => void;
   list: TodoInfo[];
+  onItemClick: (index: number) => void;
 };
 
 class Todos extends React.Component<PropsType> {
@@ -25,21 +27,22 @@ class Todos extends React.Component<PropsType> {
     return (
       <components.Wrapper>
         <AddTodo onAdd={this.props.addClick} />
-        <TodoList list={this.props.list} />
+        <TodoList list={this.props.list} onItemClick={this.props.onItemClick} />
       </components.Wrapper>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppState) => {
   return {
-    list: state.TodoReducer.todos as TodoInfo[],
+    list: state.todo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addClick: bindActionCreators(addTodo, dispatch),
+    onItemClick: bindActionCreators(toggleTodo, dispatch),
   };
 };
 

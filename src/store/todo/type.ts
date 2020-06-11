@@ -16,11 +16,14 @@ export const ADD_TODO = "ADD_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
 
-/*
- * 过滤器类型
- */
-export enum VisibilityFilters {
-  SHOW_ALL,
-  SHOW_COMPLETED,
-  SHOW_ACTIVE,
+interface AddTodoAction {
+  type: typeof ADD_TODO;
+  text: string;
 }
+
+interface ToggleTodoAction {
+  type: typeof TOGGLE_TODO;
+  index: number;
+}
+
+export type TodoActionTypes = AddTodoAction | ToggleTodoAction;

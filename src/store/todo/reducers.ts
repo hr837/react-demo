@@ -1,0 +1,23 @@
+import { TodoActionTypes, TodoInfo } from "./type";
+
+export function todoReducer(state: TodoInfo[] = [], action: TodoActionTypes) {
+  switch (action.type) {
+    case "ADD_TODO":
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false,
+        },
+      ];
+    case "TOGGLE_TODO":
+      return state.map((todo: TodoInfo, index: number) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, { completed: !todo.completed });
+        }
+        return todo;
+      });
+    default:
+      return state;
+  }
+}

@@ -46,6 +46,7 @@ export default class AddTodo extends React.Component<PropsType, StateType> {
       <component.Wrapper>
         <Input
           className="todo-input"
+          placeholder="请写下今天要干的事情"
           value={this.state.inputValue}
           onChange={this.onInputChange}
         />
