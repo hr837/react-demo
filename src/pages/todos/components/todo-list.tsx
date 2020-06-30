@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { TodoInfo } from "../../store/todo/type";
-import { Empty, List } from "antd";
+import { TodoInfo } from "@/store/todo/type";
+import { List } from "antd";
 
 type PropsType = {
   list: TodoInfo[];
@@ -28,8 +28,6 @@ const component = {
 };
 
 export default class TodoList extends React.Component<PropsType> {
-  static defaultProps: { list: [] };
-
   public render() {
     return (
       <component.Wrapper>

@@ -1,12 +1,16 @@
-import { ADD_TODO, TOGGLE_TODO } from "./type";
+import { ActionTypes, TodoInfo } from "./type";
 
 export function addTodo(text: string) {
   return {
-    type: ADD_TODO,
+    type: ActionTypes.ADD_TODO,
     text,
   };
 }
 
 export function toggleTodo(index: number) {
-  return { type: TOGGLE_TODO, index };
+  return { type: ActionTypes.TOGGLE_TODO, index };
+}
+
+export function getTodoList(data: TodoInfo[]) {
+  return { type: ActionTypes.GET_TODO_LIST, data };
 }

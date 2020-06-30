@@ -1,0 +1,11 @@
+.basic-layout {
+  height: 100%;
+  display: grid;
+  grid-template:
+    "a a" 60px
+    "b c" ~"1fr / 200px 1fr";
+
+  .header {
+    grid-area: a;
+  }
+}
