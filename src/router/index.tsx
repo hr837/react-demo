@@ -1,11 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { renderRoutes } from "react-router-config";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import BasicLayout from "@/layouts/basic-layout";
+import SideLayout from "@/layouts/side-layout";
 import Login from "@/pages/login";
-import PageRoutes from "./page-routes.config";
-import RouterCheck from "./RouterCheck";
+import NotFount from "@/pages/not-found";
+import SimpleLayout from "@/layouts/simple-layout";
+import todos from "@/pages/todos";
+
+import InfoRoutes from "./info.routes.config";
+import BlankLayout from "@/layouts/blank-layout";
 
 export default class RouterApp extends React.Component {
   constructor(props) {
@@ -16,20 +19,10 @@ export default class RouterApp extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={RouterCheck} />
-          <Route path="/login" component={Login} />
-
-          <Route path="/">
-            <BasicLayout>
-              {PageRoutes.map((config, index) => (
-                <Route
-                  key={index}
-                  path={config.path}
-                  component={config.component}
-                />
-              ))}
-            </BasicLayout>
-          </Route>
+          <Route path="/workspace" component={SideLayout}></Route>
+          <Route path="/info" component={SimpleLayout}></Route>
+          <Route path="/not-found" exact component={NotFount}></Route>
+          <Route path="/" component={BlankLayout}></Route>
         </Switch>
       </BrowserRouter>
     );

@@ -30,7 +30,7 @@ class Login extends React.Component<RouteComponentProps, StateType> {
     // console.log(this.props);
     // this.props.history.replace("/todos");
     localStorage.setItem("isLogin", "123");
-    this.props.history.replace("/");
+    this.props.history.replace("/workspace/todos");
   }
 
   private changeVerifyMode() {

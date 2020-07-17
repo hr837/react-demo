@@ -1,7 +1,6 @@
 import React from "react";
 
 import { withRouter, RouteComponentProps } from "react-router";
-import BasicLayout from "@/layouts/basic-layout";
 
 class RouterCheck extends React.Component<RouteComponentProps> {
   componentWillMount() {
@@ -13,7 +12,7 @@ class RouterCheck extends React.Component<RouteComponentProps> {
   }
 
   render() {
-    return <div></div>;
+    return <div>{this.props.children}</div>;
   }
 }
 
