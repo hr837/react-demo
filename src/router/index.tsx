@@ -7,7 +7,7 @@ import NotFount from "@/pages/not-found";
 import SimpleLayout from "@/layouts/simple-layout";
 import todos from "@/pages/todos";
 
-import InfoRoutes from "./info.routes.config";
+import InfoRoutes from "./info.routes";
 import BlankLayout from "@/layouts/blank-layout";
 
 export default class RouterApp extends React.Component {

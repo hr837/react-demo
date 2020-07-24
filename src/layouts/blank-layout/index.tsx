@@ -2,7 +2,7 @@ import React from "react";
 import { Layout } from "antd";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import SimpleRoutes from "@/router/simple.routes.config";
+import SimpleRoutes from "@/router/simple.routes";
 
 const BlankLayout = () => {
   return (

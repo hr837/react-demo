@@ -4,14 +4,15 @@ import { Provider } from "react-redux";
 import "@/assets/styles/index.less";
 import InitStore from "./store";
 import RouterApp from "./router";
+import { PersistGate } from "redux-persist/integration/react";
 
-const store = InitStore();
+const { store, persistor } = InitStore();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <RouterApp />
-    </Provider>
-  </React.StrictMode>,
+    </PersistGate>
+  </Provider>,
   document.getElementById("root")
 );

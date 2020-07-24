@@ -10,13 +10,34 @@ import {
 } from "@ant-design/icons";
 import "./index.less";
 import { RouteComponentProps, withRouter } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { UpdateResource, SetToken } from "@/store/user/actions";
+import { connect, ConnectedProps } from "react-redux";
+import { UserResources } from "./tmp-data";
+
+const mapActionToProps = (dispath) => {
+  return {
+    updateToken: bindActionCreators(SetToken, dispath),
+    updateResource: bindActionCreators(UpdateResource, dispath),
+  };
+};
+
+const connector = connect(null, mapActionToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 type StateType = {
   verifyCodeMode: boolean;
   timeOut: number;
 };
 
-class Login extends React.Component<RouteComponentProps, StateType> {
+/**
+ * 用户登录
+ */
+class Login extends React.Component<
+  PropsFromRedux & RouteComponentProps,
+  StateType
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,11 +47,15 @@ class Login extends React.Component<RouteComponentProps, StateType> {
   }
 
   private onFinish(data) {
-    console.log(data);
+    // console.log(data);
     // console.log(this.props);
     // this.props.history.replace("/todos");
-    localStorage.setItem("isLogin", "123");
+    // localStorage.setItem("isLogin", "123");
     this.props.history.replace("/workspace/todos");
+    this.props.updateToken("ABCDEFG123");
+    this.props.updateResource(UserResources);
+    this.props.history.push("/workspace/my/data/customer");
+    // this.props.updateResource()
   }
 
   private changeVerifyMode() {
@@ -125,4 +150,4 @@ class Login extends React.Component<RouteComponentProps, StateType> {
   }
 }
 
-export default withRouter(Login);
+export default connector(withRouter(Login));
